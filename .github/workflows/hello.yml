@@ -22,7 +22,7 @@ jobs:
       
       - name: Print branch name
         run: |
-          echo "Branch: ${GITHUB_REF##refs/heads/}
+          echo "Branch: ${GITHUB_REF##refs/heads/}"
         
       - name: List the files in the repo
         run: ls -la
