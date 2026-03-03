@@ -20,8 +20,9 @@ jobs:
       - name: Print the current date and time
         run: date
       
-      - name: Print the name of the branch that triggered the run
-        run: echo "Branch: ${GITHUB_REF##refs/heads/}"
+      - name: Print branch name
+        run: |
+          echo "Branch: ${GITHUB_REF##refs/heads/}
         
       - name: List the files in the repo
         run: ls -la
