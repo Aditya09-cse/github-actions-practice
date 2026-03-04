@@ -1,7 +1,7 @@
 name: Practice
 #trigger on every push
-on:
-  push:
+#on:
+ # push:
     branches: [main]
 
 # this is job inside workflow  
