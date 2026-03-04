@@ -1,15 +1,21 @@
-name: trigger-on-pr
+name: PR and Scheduled Check
 
 on:
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: '0 0 * * *'   # Every day at midnight UTC
 
 jobs:
   pr:
     runs-on: ubuntu-latest
-
     steps:
-      - name: PR check running for branch
-        run: |
-          echo "PR check running for branch: ${{ github.head_ref }}"
+      - name: PR check
+        run: echo "PR check running for branch: ${{ github.head_ref }}"
+
+  daily:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Daily check
+        run: echo "Scheduled workflow running at midnight UTC"
