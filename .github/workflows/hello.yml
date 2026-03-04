@@ -1,4 +1,3 @@
-<!--
 name: Practice
 #trigger on every push
 on:
@@ -29,5 +28,3 @@ jobs:
         run: ls -la
       - name: Print the runner's operating system
         run:  uname -a
-
-        -->
