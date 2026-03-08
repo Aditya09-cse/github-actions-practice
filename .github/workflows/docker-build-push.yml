@@ -24,4 +24,7 @@ jobs:
           uses: docker/build-push-action@v6
           with:
             push: true
-            tags: ${{ vars.DOCKERHUB_USER}}/github-actions-practice:${{github_ref}} # output -> aditya0910/github-action-practice:main
+            tags: |
+              ${{ vars.DOCKERHUB_USER}}/github-actions-practice:${{github.ref}} # output -> aditya0910/github-action-practice:main
+              ${{ vars/DOCKERHUB_USER}}/github-action-practice:latest
+              ${{ vars.DOCKERHUB_USER}}/github-actions-practice:${{ vars.GITHUB_SHA}}
