@@ -16,4 +16,5 @@ jobs:
       - name: print the environment
         env:
           ENV_NAME: ${{ github.event.inputs.environment }}
-        run: echo "Environment selected: $ENV_NAME"
+        run: |
+          echo Environment selected: $ENV_NAME
