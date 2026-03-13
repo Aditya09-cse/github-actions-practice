@@ -1,0 +1,14 @@
+name: Daily status check
+
+on:
+  schedule:
+    - cron: '0 0 * * *' 
+
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: daily check
+        run: echo "Scheduled workflow running at midnight UTC"
+
