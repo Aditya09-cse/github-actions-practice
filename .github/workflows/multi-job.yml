@@ -1,0 +1,28 @@
+name: Multi Job YML
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: prints "Buildin the app"
+        run: echo "Building the app"
+
+  testing:
+    runs-on: ubuntu-latest
+    needs: [build]
+
+    steps:
+      - name: prints "Running tests"
+        run:  echo "Running tests"
+
+  deploying:
+    runs-on: ubuntu-latest
+    needs: [testing]
+
+    steps:
+      - name: print "Deploying the app"
+        run: echo "Deploying the app"
