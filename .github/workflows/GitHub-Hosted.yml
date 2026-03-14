@@ -21,8 +21,13 @@ jobs:
       - name: print the current user running the job
         run: echo $USER 
 
-      - name: print the tool versions of (docker,python,node,git)
-        run:  docker --version && git --version && python --version && node --version
+      - name: print tool versions
+        run: |
+          echo "Docker: $(docker --version)"
+          echo "Git: $(git --version)"
+          echo "Python: $(python --version)"
+          echo "Node: $(node --version)"
+
 
   windows_job:
     runs-on: windows-latest
