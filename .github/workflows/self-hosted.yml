@@ -1,0 +1,15 @@
+name: Self-hosted Runner
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  self-hosted-demo:
+    runs-on: self-hosted
+
+    steps:
+      - name: Show Host Information
+        run: |
+          echo "Hostname: $(hostname -I)"
+          echo "Current Directory: $(pwd)"
+          echo "create & verify file: $(touch adi && ls adi)"
