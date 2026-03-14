@@ -7,10 +7,18 @@ jobs:
   date:
     runs-on: ubuntu-latest
 
+    outputs:
+      date: ${{ steps.setdate.outputs.date }}
+
     steps:
       - name: sets an output 
+        id: setdate
         run: echo "date ${date}" >> $GITHUB_OUTPUT
-      
+  print:
+    runs-on: ubuntu-latest
+    needs: [date]
+
+    steps:    
       - name: reads an output & print 
         run: echo " ${{ needs.date.outputs.date }} "
        
