@@ -1,8 +1,10 @@
 name: Practice
 #trigger on every push
-#on:
+on: 
+  workflow_dispatch:
+    
  # push:
-    branches: [main]
+    #branches: [main]
 
 # this is job inside workflow  
 jobs:
