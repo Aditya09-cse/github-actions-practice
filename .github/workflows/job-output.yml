@@ -1,0 +1,16 @@
+name: Job Output YML
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  date:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: sets an output 
+        run: echo "date ${date}" >> $GITHUB_OUTPUT
+      
+      - name: reads an output & print 
+        run: echo " ${{ needs.date.outputs.date }} "
+       
