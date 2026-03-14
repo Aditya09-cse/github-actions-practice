@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: sets an output 
         id: setdate
-        run: echo "date ${date}" >> $GITHUB_OUTPUT
+        run: echo "date=${date}" >> $GITHUB_OUTPUT
   print:
     runs-on: ubuntu-latest
     needs: [date]
