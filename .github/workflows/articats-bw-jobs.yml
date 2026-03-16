@@ -27,7 +27,7 @@ jobs:
       - name: download file 
         uses: actions/download-artifact@v4
         with:
-          name: generate-file report.txt
+          name: report.txt
 
       - name: print report.txt
         run: cat report.txt
