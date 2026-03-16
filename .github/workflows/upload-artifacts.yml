@@ -1,0 +1,20 @@
+name: Upload Artifacts 
+
+on:
+  workflow_dispatch:
+    
+jobs:
+   upload-artifacts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: create a report file
+        run: | 
+          mkdir reports
+          echo "test record" > reports/report.txt
+
+      - name: save & upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: reprt.txt
+          path: reports/report.txt
