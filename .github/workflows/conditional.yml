@@ -1,4 +1,4 @@
-name: If Condition
+name: Conditional-demo
 
 on:
   push:
