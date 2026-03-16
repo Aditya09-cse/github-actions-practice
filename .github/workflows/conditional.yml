@@ -21,7 +21,7 @@ jobs:
         if: failure()
         run: echo "previous step is faileds"
   on-push:
-    if: github.event_name != "pull_request"
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
