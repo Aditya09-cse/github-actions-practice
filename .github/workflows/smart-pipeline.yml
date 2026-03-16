@@ -36,7 +36,7 @@ jobs:
     steps:
       - name: print branch name &  commit
         run: |
-          echo "branch name:" ${{g github.ref_name}}
+          echo "branch name:" ${{ github.ref_name }}
           echo "commit message:" ${{ github.event.commit[0].message}}
 
           if [ "${{ github.ref_name }}" = "main" ]; then
