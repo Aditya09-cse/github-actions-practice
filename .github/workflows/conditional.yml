@@ -3,6 +3,10 @@ name: If Condition
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    
 
 jobs:
   condition:
@@ -16,3 +20,16 @@ jobs:
       - name: only run when previous step is failed
         if: failure()
         run: echo "previous step is faileds"
+  on-push:
+    if: github.event_name != "pull_request"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: run only on push events
+        run:  echo "only run on push events"
+
+      - name: step with continue error
+        run: |
+          echo "this step will fail"
+          exit 1
+        continue-on-error: true
