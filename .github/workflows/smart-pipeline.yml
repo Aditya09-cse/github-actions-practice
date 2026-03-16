@@ -39,9 +39,9 @@ jobs:
           echo "branch name:" ${{g github.ref_name}}
           echo "commit message:" ${{ github.event.commit[0].message}}
 
-        if [ "${{ github.ref_name }}" = "main" ]; then
+          if [ "${{ github.ref_name }}" = "main" ]; then
           echo "this push is for main branch"
-        else:
-          echo "this push is for Feature branch"
+          else
+            echo "this push is for Feature branch"
 
-        fi
+          fi
