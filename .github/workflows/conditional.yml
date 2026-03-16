@@ -1,0 +1,18 @@
+name: If Condition
+
+on:
+  push:
+    branches: [mains]
+
+jobs:
+  condition:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: run only when branch is main
+        if: github.ref == 'refs/heads/main'
+        run:  echo "run when the branch is main"
+
+      - name: only run when previous step is failed
+        if: failure()
+        run: echo "previous step is faileds"
