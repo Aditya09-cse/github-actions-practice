@@ -20,4 +20,4 @@ jobs:
         run: pip install -r requirements.txt
       
       - name: run script
-        run:  python system_health.py
+        run:  python scripts/system_health.py
