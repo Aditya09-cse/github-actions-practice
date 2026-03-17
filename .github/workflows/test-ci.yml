@@ -20,4 +20,4 @@ jobs:
         run: pip install -r requirements.txt
       
       - name: run script
-        run:  python scripts/system_health.py 80 80 80 
+        run:  echo  -e "80\n80\n80" |  python scripts/system_health.py 
