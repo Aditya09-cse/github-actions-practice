@@ -1,0 +1,29 @@
+name: Caching To Install Dependencies
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  cacheing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: chekout code
+        uses: actions/checkout@v4
+      
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+          #cache : "pip"
+
+      - name: cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip 
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+        
+     # - name: Install dependencies
+      #  run: |
+      #    python -m pip install --upgrade pip
+       #   pip install -r requirements.txt
