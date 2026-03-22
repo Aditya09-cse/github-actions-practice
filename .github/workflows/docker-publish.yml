@@ -33,7 +33,7 @@ jobs:
         if: github.ref == 'main'
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./flask-task-manager
           push: true
           tags: | 
             ${{ secrets.DOCKERHUB_USER }}/flask-task-manager:latest
