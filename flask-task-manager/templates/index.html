@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Task Manager</title>
+
+<link rel="stylesheet" href="/static/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+<h1>🚀 DevOps Task Manager</h1>
+<p>Organize your tasks efficiently</p>
+</header>
+
+<section class="task-box">
+
+<form method="POST">
+
+<input type="text" name="title" placeholder="Enter new task..." required>
+
+<button type="submit">Add Task</button>
+
+</form>
+
+<ul class="task-list">
+
+{% for task in tasks %}
+
+<li class="task-item">
+
+<span>{{task.title}}</span>
+
+<a href="/delete/{{task.id}}" class="delete-btn">Delete</a>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+</section>
+
+<footer>
+<p>Built with Flask + Docker 🚀</p>
+</footer>
+
+</div>
+
+</body>
+</html>

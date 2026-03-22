@@ -1,0 +1,96 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins', sans-serif;
+background:linear-gradient(135deg,#667eea,#764ba2);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:#333;
+}
+
+.app{
+background:white;
+padding:40px;
+width:420px;
+border-radius:12px;
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+header h1{
+font-weight:600;
+margin-bottom:5px;
+}
+
+header p{
+font-size:14px;
+color:#777;
+margin-bottom:25px;
+}
+
+.task-box form{
+display:flex;
+gap:10px;
+margin-bottom:20px;
+}
+
+.task-box input{
+flex:1;
+padding:10px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:14px;
+}
+
+.task-box button{
+background:#667eea;
+border:none;
+color:white;
+padding:10px 15px;
+border-radius:6px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.task-box button:hover{
+background:#5a67d8;
+}
+
+.task-list{
+list-style:none;
+}
+
+.task-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px;
+margin-bottom:8px;
+background:#f4f6fb;
+border-radius:6px;
+}
+
+.delete-btn{
+color:white;
+background:#e53e3e;
+padding:5px 10px;
+border-radius:4px;
+text-decoration:none;
+font-size:12px;
+}
+
+.delete-btn:hover{
+background:#c53030;
+}
+
+footer{
+margin-top:20px;
+font-size:12px;
+color:#999;
+}

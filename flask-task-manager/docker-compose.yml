@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  my-app:
+    build: .
+    ports: 
+      - "5000:5000"
+    networks: 
+      - app-network
+    depends_on:
+      - my-db
+    env_file:
+      - .env
+
+  my-db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tasksdb
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+networks:
+  app-network:
+    driver: bridge
