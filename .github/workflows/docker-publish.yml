@@ -30,10 +30,10 @@ jobs:
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> GITHUB_ENV
 
       - name: tag & push only on main branch
-        if: github.ref == 'main'
+        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./flask-task-manager
           push: true
           tags: | 
             ${{ secrets.DOCKERHUB_USER }}/flask-task-manager:latest
