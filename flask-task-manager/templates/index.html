@@ -1,56 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset="UTF-8">
-<title>Task Manager</title>
-
-<link rel="stylesheet" href="/static/style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <title>DevOps Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
 
 <div class="app">
 
-<header>
-<h1>🚀 DevOps Task Manager</h1>
-<p>Organize your tasks efficiently</p>
-</header>
+    <!-- Top Bar -->
+    <div class="top">
+        <div>
+            <h1>DevOps Tasks</h1>
+            <p>Day 45 • CI/CD Pipeline Active</p>
+        </div>
 
-<section class="task-box">
+        <img src="https://github.com/Aditya09-cse/github-actions-practice/actions/workflows/docker-publish.yml/badge.svg">
+    </div>
 
-<form method="POST">
+    <!-- Input -->
+    <form action="/" method="POST" class="input-box">
+        <input type="text" name="title" placeholder="What needs to be done?" required>
+        <button>Add</button>
+    </form>
 
-<input type="text" name="title" placeholder="Enter new task..." required>
+    <!-- Tasks -->
+    <div class="tasks">
+        {% for task in tasks %}
+        <div class="task">
+            <span>{{ task.title }}</span>
+            <a href="/delete/{{ task.id }}">✕</a>
+        </div>
+        {% endfor %}
+    </div>
 
-<button type="submit">Add Task</button>
-
-</form>
-
-<ul class="task-list">
-
-{% for task in tasks %}
-
-<li class="task-item">
-
-<span>{{task.title}}</span>
-
-<a href="/delete/{{task.id}}" class="delete-btn">Delete</a>
-
-</li>
-
-{% endfor %}
-
-</ul>
-
-</section>
-
-<footer>
-<p>Built with Flask + Docker 🚀</p>
-</footer>
+    <!-- Footer -->
+    <div class="footer">
+        <span>Flask • Docker • GitHub Actions • EC2</span>
+    </div>
 
 </div>
 
