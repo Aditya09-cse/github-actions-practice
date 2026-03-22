@@ -29,7 +29,8 @@ jobs:
       - name: set short sha using slice
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> GITHUB_ENV
 
-      - name: tag & push
+      - name: tag & push only on main branch
+        if: github.ref == 'main'
         uses: docker/build-push-action@v6
         with:
           context: .
