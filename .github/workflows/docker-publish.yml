@@ -7,7 +7,7 @@ on:
    #    - main
 
 jobs:
-  dokcer-push:
+  docker-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +28,16 @@ jobs:
             password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: set short sha using slice
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> GITHUB_ENV
+
+      - name: tag & push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: | 
+            ${{ secrets.DOCKERHUB_USER }}/flask-task-manager:latest
+            ${{ secrets.DOCKERHUB_USER }}/flask-task-manager:latest-${{env.SHORT_SHA}}
+        
         
 
 
