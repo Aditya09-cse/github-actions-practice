@@ -13,9 +13,15 @@ on:
     secrets:
       docker_token:
         required: true
+    outputs:
+      build_version:
+        description: "Generated build version"
+        value: ${{ jobs.reusable-build.outputs.build_version}}
 jobs:
   reusable-build:
     runs-on: ubuntu-latest
+    outputs:
+      build_version: ${{ steps.set_version.outputs.build_version}}
     steps:
       - name: checkout the code
         uses: actions/checkout@v4
@@ -23,8 +29,18 @@ jobs:
         run: echo "Building the ${{inputs.app_name}} for ${{inputs.environment}}"
       - name: docker token is set
         run: |
-          if [ -n "${{secrets.docker_token}}"]; then
+          if [ -n "${{secrets.docker_token}}" ]; then
               echo "Docker token is set: true"
           else 
               echo "Docker token is set: false"
           fi
+      
+      - name: Generate build version
+        id: set_version
+        run: |
+          SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -cl-7)
+          VERSION:"v1.0-${SHORT_SHA}"
+          echo "build_version=$VERSION" >> $GITHUB_OUTPUT
+        
+      - name: print build version
+        run: echo "Build version is ${{ steps.set_version.outputs.build_version}}"
