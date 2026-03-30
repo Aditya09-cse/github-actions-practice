@@ -20,7 +20,7 @@ jobs:
       - name: checkout the code
         uses: actions/checkout@v4
       - name: print building app_name for env
-        run: echo "Building ${{inputs.app_name}} for ${{inputs.environment}}"
+        run: echo "Building the ${{inputs.app_name}} for ${{inputs.environment}}"
       - name: docker token is set
         run: |
           if [ -n "${{secrets.docker_token}}"]; then
