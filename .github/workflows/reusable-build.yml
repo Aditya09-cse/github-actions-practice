@@ -38,8 +38,8 @@ jobs:
       - name: Generate build version
         id: set_version
         run: |
-          SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -cl-7)
-          VERSION:"v1.0-${SHORT_SHA}"
+          SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
+          VERSION="v1.0-${SHORT_SHA}"
           echo "build_version=$VERSION" >> $GITHUB_OUTPUT
         
       - name: print build version
