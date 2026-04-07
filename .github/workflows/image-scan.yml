@@ -1,10 +1,10 @@
-name: Image Scannner
+name: Image Scanner
 
 on:
   workflow_call:
     
 jobs:
-  imager-scaneer:
+  imager-scanner:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
             password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
       - name: trivy scanner
-        uses: aquasecurity/trivy-action@v0
+        uses: aquasecurity/trivy-action@v0.20.0
         with:
           severity: 'CRITICAL'
           exit-code: '1'
