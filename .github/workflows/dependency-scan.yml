@@ -1,5 +1,5 @@
 # packages - issues & vulnerabilities scan
-#pip-audit -> for python code
+#pip-audit -> to scan vulnarabalities in  python code
 name: Dependency Scan
 
 on:
