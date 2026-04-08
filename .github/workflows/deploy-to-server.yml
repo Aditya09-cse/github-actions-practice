@@ -1,18 +1,14 @@
-# this will deploy the safe /secure /tested app to prod server
+---
 name: Deploy To Server
-
 on:
-  workflow_call:
-    
+  workflow_call: null
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-     # - name: Docker compose file
-       # uses: appleboy/scp-action@v0.1.7
-
-      - name: SSH to prod server
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: SSH to prod server & create app folder
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_SSH_HOST }}
@@ -21,4 +17,23 @@ jobs:
           script: |
             echo "Starting Deployment"
             mkdir -p devops
-            # docker compose up -d
+      - name: Copy the docker-compose file
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.EC2_SSH_HOST }}
+          username: ${{ secrets.EC2_SSH_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          source: docker-compose.yml
+          target: ~/devops/
+      - name: SSH to prod server & run app 
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_SSH_HOST }}
+          username: ${{ secrets.EC2_SSH_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            echo "Running the app"
+            sudo apt-get update && sudo apt-get install docker.io docker-compose-v2 -y
+            sudo usermod -aG docker $USER && newgrp docker
+            echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ vars.DOCKERHUB_USER  }} --password-stdin
+            cd ~/devops &&  docker-compose up down && docker-compose up -d --build --force-recreate
